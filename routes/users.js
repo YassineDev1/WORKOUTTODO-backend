@@ -15,8 +15,8 @@ router.post("/signup", async (req, res) => {
     password: hashedPass,
   });
   await user.save();
-  const token = user.generateAuthToken();
-  return res.header("x-auth-token", token).send(user);
+  const accessToken = user.generateAuthToken();
+  return res.header("x-auth-token", accessToken).send(user);
 });
 
 router.post("/", (req, res) => {
