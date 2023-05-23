@@ -11,7 +11,7 @@ app.use(express.json());
 
 uri = process.env.MONGO_URI
 mongoose
-  .connect("mongodb+srv://YassineRO:iIqCVzQBQ7NbPokf@football.xikwinx.mongodb.net/gym", {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     socketTimeoutMS: 30000,
