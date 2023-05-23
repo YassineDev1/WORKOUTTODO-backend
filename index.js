@@ -9,13 +9,21 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(cors())
+app.options("*", cors());
 
-app.use(function (req, res, next){
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Methods", "GET,HEAD, OPTIONS, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requeste-With, Content-Type, Accept, Authorization" );
-  next();
-})
+const allowedOrigins = ["https://workouttodo-frontend.vercel.app"];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
+
 
 mongoose
   .connect(process.env.MONGO_URI, {
