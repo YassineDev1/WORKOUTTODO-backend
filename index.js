@@ -9,12 +9,10 @@ const app = express();
 app.use(express.json());
 
 
-uri = process.env.MONGO_URI
 mongoose
-  .connect(uri, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    socketTimeoutMS: 30000,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.error("Error connecting to MongoDB:", error));
