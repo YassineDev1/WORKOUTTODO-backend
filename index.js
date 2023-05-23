@@ -3,14 +3,18 @@ const mongoose = require("mongoose");
 const auth = require("./routes/users");
 const workouts = require("./routes/workouts");
 const signup = require("./routes/auth");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 
+
+uri = process.env.MONGO_URI
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/gym", {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    socketTimeoutMS: 30000,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.error("Error connecting to MongoDB:", error));

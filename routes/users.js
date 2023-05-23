@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/User");
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 const router = express.Router();
 
 router.post("/signup", async (req, res) => {
