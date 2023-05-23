@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 const auth = require("./routes/users");
 const workouts = require("./routes/workouts");
 const signup = require("./routes/auth");
+const cors = require('cors')
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
-
+app.use(cors())
 
 mongoose
   .connect(process.env.MONGO_URI, {
