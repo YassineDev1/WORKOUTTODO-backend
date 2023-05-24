@@ -8,19 +8,10 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.json());
-app.use(cors())
-app.options("*", cors());
-
-const allowedOrigins = ["https://workouttodo-frontend.vercel.app"];
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "https://workouttodo-frontend.vercel.app",
+    credentials: true
   })
 );
 
