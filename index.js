@@ -10,19 +10,26 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "*",
-    credentials: true
+    origin: "https://workouttodo-frontend.vercel.app",
+    credentials: true,
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "x-auth-token",
+    ],
   })
 );
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // or specify the origin(s) of your client application
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, content-type, x-auth-token"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*"); // or specify the origin(s) of your client application
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, content-type, x-auth-token"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   next();
+// });
 
 
 mongoose
