@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.post("/workouts", auth, async (req, res) => {
   const { title, reps, load } = req.body;
-console.log(req);
   if (!title || !reps || !load) {
     return res.status(400).json({ message: "Missing required fields" });
   }
@@ -29,6 +28,7 @@ console.log(req);
 });
 
 router.get("/workouts",auth, async (req, res) => {
+
   try {
     const workouts = await Workout.find({ user: req.user.email });
     res.json({ workouts });

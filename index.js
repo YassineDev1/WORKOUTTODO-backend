@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://workouttodo-frontend.vercel.app",
+    origin: "*",
     credentials: true
   })
 );
@@ -29,7 +29,7 @@ app.use("/api", workouts);
 app.use("/api", signup);
 
 
-const PORT = 3000;
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

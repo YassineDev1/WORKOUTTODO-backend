@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
   },
 });
 UserSchema.methods.generateAuthToken = function () {
-  const accessToken = jwt.sign({ email: this.email }, "jwtPrivateKey");
+  const accessToken = jwt.sign({ email: this.email }, "jwtPrivateKey", {expiresIn:"1h"});
   const refreshToken = jwt.sign(
     { email: this.email },
     "refreshTokenPrivateKey",
