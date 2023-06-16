@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://workouttodo-frontend.vercel.app",
+    origin: process.env.ORIGIN,
     credentials: true,
     allowedHeaders: [
       "Origin",
@@ -21,20 +21,10 @@ app.use(
     ],
   })
 );
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*"); // or specify the origin(s) of your client application
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, content-type, x-auth-token"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//   next();
-// });
-
 
 mongoose
   .connect(
-    "mongodb+srv://vercel-admin-user:CABciOkmuwR6pobF@football.xikwinx.mongodb.net/gym",
+    process.env.MONGO_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -49,6 +39,6 @@ app.use("/api", signup);
 
 
 const PORT = 3001;
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
